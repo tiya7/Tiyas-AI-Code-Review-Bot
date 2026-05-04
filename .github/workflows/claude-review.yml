@@ -36,14 +36,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 🔍 Run Claude PR Reviewer
+      - name: 🔍 Run Tiyas AI Code Review Bot
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GITHUB_TOKEN:       ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY:  ${{ github.repository }}
           PR_NUMBER:          ${{ github.event.pull_request.number }}
           CLAUDE_MODEL:       claude-opus-4-5
-          MAX_DIFF_CHARS:     "12000"
+          MAX_DIFF_CHARS:     "12000" (default)
         run: python src/reviewer.py
 
       - name: 📊 Upload review artifacts
