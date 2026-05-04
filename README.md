@@ -189,4 +189,4 @@ If the bot finds **any P0 (critical) issue**, the GitHub Actions job exits with 
 ## 📄 License
 
 MIT — do whatever you want, just don't blame us if Claude roasts your code 😄
-Built with lovw by Tiya❤️
+Built with love by Tiya❤️
