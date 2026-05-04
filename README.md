@@ -1,4 +1,4 @@
-# 🤖 Claude PR Reviewer
+# 🤖 Tiyas AI Chat Reviewer Bot
 
 > Automatically review GitHub Pull Requests using **Anthropic Claude AI** — with severity scoring, inline comments, security scanning, and auto-generated changelogs.
 
