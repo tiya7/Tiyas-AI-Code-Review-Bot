@@ -1,0 +1,55 @@
+name: 🤖 Claude PR Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - master
+      - develop
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  claude-review:
+    name: Claude AI Review
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐍 Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 🔍 Run Claude PR Reviewer
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN:       ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY:  ${{ github.repository }}
+          PR_NUMBER:          ${{ github.event.pull_request.number }}
+          CLAUDE_MODEL:       claude-opus-4-5
+          MAX_DIFF_CHARS:     "12000"
+        run: python src/reviewer.py
+
+      - name: 📊 Upload review artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: claude-review-log
+          path: "*.log"
+          if-no-files-found: ignore
