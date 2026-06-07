@@ -61,7 +61,7 @@ class PRReview:
 
 # ── Claude Prompts ─────────────────────────────────────────────────────────────
 
-SYSTEM_PROMPT = """You are an expert senior AI engineer performing a thorough code review.
+SYSTEM_PROMPT = """You are an expert senior software engineer performing a thorough code review.
 Your job is to review GitHub Pull Request diffs with extreme care.
 
 For every review you produce valid JSON only — no markdown, no prose outside the JSON.
