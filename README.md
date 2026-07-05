@@ -106,7 +106,7 @@ python scripts/test_local.py --repo owner/repo --pr 42 --dry-run
 **a)** Copy the workflow to your target repo:
 ```bash
 mkdir -p YOUR_REPO/.github/workflows
-cp .github/workflows/claude-review.yml YOUR_REPO/.github/workflows/
+cp .github/workflows/claude-review.yml YOUR_REPO_NAME/.github/workflows/
 ```
 
 **b)** Add secrets to your GitHub repo:
